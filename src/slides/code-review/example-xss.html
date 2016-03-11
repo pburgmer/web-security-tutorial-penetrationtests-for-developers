@@ -13,12 +13,12 @@
     </ul>
 
 <pre w11k-pretty-print lang="java">
-private void setPageTitle(HttpServletRequest request) {
-  String requestType = request.getParameter("type");
-  if ("3".equals(requestType) && request.getParameter("title") != null)
-    pageTitle = request.getParameter("title");
+private void setTitle(final HttpServletRequest request) {
+  final String requestType = request.getParameter("type");
+  if ("history".equals(requestType) && request.getParameter("title") != null)
+    title = request.getParameter("title");
   else
-    pageTitle = DEFAULT_TITLE;
+    title = DEFAULT_TITLE;
 }
 </pre>
   </div>
