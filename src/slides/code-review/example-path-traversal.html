@@ -1,0 +1,19 @@
+<div w11k-slide-master="regular">
+  <div w11k-slide-part-source="header">
+    Code Review <br>
+    <small>Path Traversal</small>
+  </div>
+
+  <div w11k-slide-part-source="content">
+    <ul>
+      <li>Potenzielles Problem: Benutzereingaben als Teil eines Pfads für Dateizugriff</li>
+      <li><code>../</code> kann für Zugriff auf andere Verzeichnisse verwendet werden</li>
+      <li>ToDo: Suche nach Verwendung von File APIs<br>
+        z.B. in Java: <code>getInputStream</code>, <code>getReader</code>, <code>FileInputStream</code>,<br>
+        <code>FileOutputStream</code>, <code>FileReader</code>, <code>FileWriter</code>
+      </li>
+    </ul>
+
+  </div>
+
+</div>

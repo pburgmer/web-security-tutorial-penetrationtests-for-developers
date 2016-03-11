@@ -1,0 +1,26 @@
+<div w11k-slide-master="regular">
+  <div w11k-slide-part-source="header">
+    Code Review <br>
+    <small>XSS</small>
+  </div>
+
+  <div w11k-slide-part-source="content">
+    <ul>
+      <li>Potenzielles Problem: Übernahme von Benutzereingaben in HTML Ausgabe</li>
+      <li>ToDo: Suche nach Auslesen von Query Parametern<br>
+        Java: <code>getParameter</code>, <code>getQueryString</code>, <code>getHeader</code>, <code>getCookies</code>, ...
+      </li>
+    </ul>
+
+<pre w11k-pretty-print lang="java">
+private void setPageTitle(HttpServletRequest request) {
+  String requestType = request.getParameter("type");
+  if ("3".equals(requestType) && request.getParameter("title") != null)
+    pageTitle = request.getParameter("title");
+  else
+    pageTitle = DEFAULT_TITLE;
+}
+</pre>
+  </div>
+
+</div>

@@ -1,0 +1,18 @@
+<div w11k-slide-master="regular">
+  <div w11k-slide-part-source="header">
+    Code Review <br>
+    <small>SQL Injection</small>
+  </div>
+
+  <div w11k-slide-part-source="content">
+    <ul>
+      <li>Potenzielles Problem: String-Konkatenation mit Benutzereingaben</li>
+      <li>Wird oft von FindBugs gefunden</li>
+      <li>ToDo: Suche nach hart codierten Strings<br>
+        <code>"SELECT</code>, <code>"INSERT</code>, <code>"DELETE</code>, <code>" AND</code>, <code>" OR</code>, <code>" WHERE</code><br>
+        (case-insensitive, Varianten mit/ohne Leerzeichen, ...)
+      </li>
+    </ul>
+  </div>
+
+</div>
