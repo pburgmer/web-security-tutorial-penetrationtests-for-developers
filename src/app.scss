@@ -1,6 +1,20 @@
+$tcc_orange: #ed5502;
+$tcc-gray: #1c2330;
+$tcc-gray-light: lighten($tcc-gray, 20%);
+$tcc-gray-lighter: lighten($tcc-gray, 40%);
+$tcc-gray-lightest: lighten($tcc-gray, 78%);
+$tcc-gradient-orange-start: #fc9253;
+$tcc-gradient-orange-end: #f26135;
+$tcc-code-bg-1: desaturate($tcc-gray-lightest, 50%);
+$tcc-code-bg-2: darken($tcc-code-bg-1, 5%);
+$tcc-code-bg-3: darken($tcc-code-bg-1, 20%);
+
 // ****************************************************************************************************
 // general
 // ****************************************************************************************************
+
+$font-size-base: 33px;
+$table-bg-accent: $tcc-code-bg-1;
 
 // Core variables and mixins
 @import "twbs-bootstrap-sass/assets/stylesheets/bootstrap//variables";
@@ -17,6 +31,7 @@
 @import "twbs-bootstrap-sass/assets/stylesheets/bootstrap/grid";
 @import "twbs-bootstrap-sass/assets/stylesheets/bootstrap/forms";
 @import "twbs-bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+@import "twbs-bootstrap-sass/assets/stylesheets/bootstrap/tables";
 
 // Utility classes
 @import "twbs-bootstrap-sass/assets/stylesheets/bootstrap/utilities";
@@ -29,17 +44,67 @@
 // w11k-slides config
 // ****************************************************************************************************
 
-$theCodeCampus_orange: #ed5502;
-@import "w11k-slides/dist/variables";
-
-$w11k-slides-title-top-background: white;
-$w11k-slides-title-separator-color: darken($w11k-slides-color-1, 8%);
-$w11k-slides-title-bottom-text-color: white;
-$w11k-slides-title-bottom-background: $w11k-slides-color-1;
-
+$theCodeCampus_orange: $tcc_orange;
 $w11k-cornerRibbon-distance: 5em;
+$w11k-cornerRibbon-background-color: linear-gradient(to left, $tcc-gray, lighten($tcc-gray, 7%));
+$w11k-cornerRibbon-border-color: $tcc-gradient-orange-end;
 
-@import "w11k-slides/dist/w11k-slides";
+@import "w11k-slides/dist/variables";
+@import "w11k-slides/dist/slides/mixins";
+@import "w11k-slides/dist/corner-ribbon/corner-ribbon";
+//@import "w11k-slides/dist/w11k-slides";
+
+.tcc-2016 .slides > .slide-container > div > .slide {
+  $w11k-prettyPrint-line-color: $tcc-code-bg-1;
+  $w11k-prettyPrint-line-color-alternate: $tcc-code-bg-2;
+  $w11k-prettyPrint-line-color-highlight: $tcc-code-bg-3;
+
+  @import "w11k-slides/dist/prettyprint/prettyprint";
+
+  code {
+    color: #48484c;
+    background-color: $w11k-prettyPrint-line-color;
+    font-family: "SourceCodePro";
+  }
+
+  .w11k-pretty-print {
+    font-weight: 200;
+
+    * {
+      font-family: "SourceCodePro";
+    }
+
+    pre.prettyprint {
+      font-size: 0.9em;
+      border-radius: 0;
+      border: 0;
+      margin-left: -0.6em;
+      margin-bottom: 0.7em;
+    }
+
+    pre.prettyprint.linenums ol.linenums > li {
+      $border-radius: 0.1em;
+
+      &:first-of-type {
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+      }
+
+      &:last-of-type {
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+
+      &:before {
+        color: $w11k-prettyPrint-line-color-alternate;
+      }
+
+      padding: 0 0.5em;
+      white-space: pre-wrap;
+      border-left: 0;
+    }
+  }
+}
 
 .slides.export {
   font-size: 10px;
@@ -68,113 +133,76 @@ $w11k-cornerRibbon-distance: 5em;
   }
 }
 
-pre.prettyprint.linenums ol.linenums>li {
-  white-space: pre-wrap;
-}
-
 .img-responsive.centered {
   margin: 0 auto;
-}
-
-.slides .slide blockquote {
-  font-size: 1.5em;
-  margin-left: 0.1em;
 }
 
 .slides .slide.centered .header .pre {
   text-transform: none;
 }
 
+@import "boxed";
+@import "overlay";
+
 // ****************************************************************************************************
 // slides content
 // ****************************************************************************************************
 
-.slide.title {
-  .logo img {
-    margin: 0 auto 0.5em;
-  }
+.tcc-2016 {
+  .slides > .slide-container > div > .slide {
 
-  h1, h1 small {
-    color: $w11k-slides-title-bottom-text-color;
-  }
 
-  div.logo img {
-    max-width: 100%;
-    max-height: 2.3em;
-  }
-}
+    &.title {
+      .logo img {
+        margin: 0 auto 0.5em;
+      }
 
-.slide.overview {
-  .content > div {
-    @include dyn-multi-column(1, 1, 2, 2);
+      h1 {
+        margin: 0;
+        font-size: 3em;
+      }
 
-    margin-bottom: 0;
-    counter-reset: lessons;
+      h1, h1 small {
+        color: $tcc-gray;
+      }
 
-    > ul {
-      > li {
-        @include keep-together();
-        display: table; // workaround for FF
+      div.top {
+        div.logo img {
+          max-width: 100%;
+          max-height: 2em;
+        }
+      }
 
-        > ul, > ol {
-          padding-left: 0;
+      .bottom {
+        background-size: auto 100%;
 
-          > li {
-            $listStyleWidth: 1.4em;
-            $listStylePadding: 0.5em;
-            padding-left: $listStyleWidth + $listStylePadding;
+        div.logos {
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
-            &:before {
-              display: inline-block;
-              color: inherit;
-              padding-right: 0em;
-              margin-right: $listStylePadding;
-              margin-left: ($listStyleWidth + $listStylePadding) * -1;
-              width: $listStyleWidth;
-              text-align: right;
-            }
+          img {
+            margin: 0 1em;
           }
         }
-
-        > ol {
-          list-style-type: none;
-
-          > li {
-            counter-increment: lessons;
-
-            &:before {
-              content: counter(lessons)".";
-            }
-          }
-        }
-
-        > ul {
-          > li {
-            &:before {
-              padding-right: 0.3em;
-            }
-          }
-        }
-
       }
     }
-  }
-}
 
-.slide.end {
-  @include vcenter;
-
-  > div {
-    display: block;
-    margin-bottom: 1.5em;
-
-    &:last-of-type {
-      margin-bottom: 0;
+    &.overview {
+      .content > div {
+        @include dyn-multi-column(1, 1, 2, 2, 0);
+      }
     }
-  }
 
-  color: $w11k-slides-color-1;
-  a, a:visited {
-    color: $w11k-slides-color-1;
+    &.end {
+      @include vcenter;
+      background: linear-gradient(to right, $tcc-gradient-orange-start, $tcc-gradient-orange-end);
+
+      color: white;
+      a, a:visited, a[href^="http"], a[href^="mailto"] {
+        color: white;
+        text-decoration: none;
+      }
+    }
   }
 }
