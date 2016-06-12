@@ -22,7 +22,7 @@ $table-bg-accent: $tcc-code-bg-1;
 
 // Reset
 @import "twbs-bootstrap-sass/assets/stylesheets/bootstrap/normalize";
-@import "twbs-bootstrap-sass/assets/stylesheets/bootstrap/print";
+//@import "twbs-bootstrap-sass/assets/stylesheets/bootstrap/print";
 
 // Core CSS
 @import "twbs-bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
@@ -49,98 +49,15 @@ $w11k-cornerRibbon-distance: 5em;
 $w11k-cornerRibbon-background-color: linear-gradient(to left, $tcc-gray, lighten($tcc-gray, 7%));
 $w11k-cornerRibbon-border-color: $tcc-gradient-orange-end;
 
+$w11k-prettyPrint-line-color: $tcc-code-bg-1;
+$w11k-prettyPrint-line-color-alternate: $tcc-code-bg-2;
+$w11k-prettyPrint-line-color-highlight: $tcc-code-bg-3;
+
 @import "w11k-slides/dist/variables";
 @import "w11k-slides/dist/slides/mixins";
 @import "w11k-slides/dist/corner-ribbon/corner-ribbon";
-//@import "w11k-slides/dist/w11k-slides";
 
-.tcc-2016 .slides > .slide-container > div > .slide {
-  $w11k-prettyPrint-line-color: $tcc-code-bg-1;
-  $w11k-prettyPrint-line-color-alternate: $tcc-code-bg-2;
-  $w11k-prettyPrint-line-color-highlight: $tcc-code-bg-3;
-
-  @import "w11k-slides/dist/prettyprint/prettyprint";
-
-  code {
-    color: #48484c;
-    background-color: $w11k-prettyPrint-line-color;
-    font-family: "SourceCodePro";
-  }
-
-  .w11k-pretty-print {
-    font-weight: 200;
-
-    * {
-      font-family: "SourceCodePro";
-    }
-
-    pre.prettyprint {
-      font-size: 0.9em;
-      border-radius: 0;
-      border: 0;
-      margin-left: -0.6em;
-      margin-bottom: 0.7em;
-    }
-
-    pre.prettyprint.linenums ol.linenums > li {
-      $border-radius: 0.1em;
-
-      &:first-of-type {
-        border-top-left-radius: $border-radius;
-        border-top-right-radius: $border-radius;
-      }
-
-      &:last-of-type {
-        border-bottom-left-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
-      }
-
-      &:before {
-        color: $w11k-prettyPrint-line-color-alternate;
-      }
-
-      padding: 0 0.5em;
-      white-space: pre-wrap;
-      border-left: 0;
-    }
-  }
-}
-
-.slides.export {
-  font-size: 10px;
-
-  .img-responsive {
-    max-width: 10cm;
-    max-height: 10cm;
-  }
-}
-
-.slides.screen .slide.centered {
-  padding: 1em 3em 2em;
-}
-
-.slide {
-  h1 {
-    color: $w11k-slides-color-2;
-  }
-
-  a[href^="http"], a[href^="mailto"] {
-    text-decoration: underline;
-  }
-
-  img + ul, pre + ul {
-    margin-top: 1em;
-  }
-}
-
-.img-responsive.centered {
-  margin: 0 auto;
-}
-
-.slides .slide.centered .header .pre {
-  text-transform: none;
-}
-
+@import "boxed-print";
 @import "boxed";
 @import "overlay";
 
@@ -151,58 +68,29 @@ $w11k-cornerRibbon-border-color: $tcc-gradient-orange-end;
 .tcc-2016 {
   .slides > .slide-container > div > .slide {
 
-
     &.title {
-      .logo img {
-        margin: 0 auto 0.5em;
-      }
 
-      h1 {
-        margin: 0;
-        font-size: 3em;
-      }
-
-      h1, h1 small {
-        color: $tcc-gray;
-      }
-
-      div.top {
-        div.logo img {
-          max-width: 100%;
-          max-height: 2em;
-        }
-      }
-
-      .bottom {
-        background-size: auto 100%;
-
-        div.logos {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          img {
-            margin: 0 1em;
-          }
-        }
-      }
-    }
-
-    &.overview {
-      .content > div {
-        @include dyn-multi-column(1, 1, 2, 2, 0);
-      }
     }
 
     &.end {
-      @include vcenter;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+
       background: linear-gradient(to right, $tcc-gradient-orange-start, $tcc-gradient-orange-end);
 
-      color: white;
-      a, a:visited, a[href^="http"], a[href^="mailto"] {
+      > div {
+        text-align: center;
         color: white;
-        text-decoration: none;
+        a, a:visited, a[href^="http"], a[href^="mailto"] {
+          color: white;
+          text-decoration: none;
+        }
       }
+
     }
   }
 }
