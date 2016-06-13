@@ -79,6 +79,7 @@
 
     slidesConfig.masters = {
       'regular': '@@cacheBustingDir/masters/regular.html',
+      'hands-on': '@@cacheBustingDir/masters/hands-on.html',
       'section-title': '@@cacheBustingDir/masters/section-title.html'
     };
   }
