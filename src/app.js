@@ -25,7 +25,8 @@
       'blackbox-testing/proxy',
       'blackbox-testing/zap-firefox',
       'blackbox-testing/telnet',
-      'blackbox-testing/hands-on',
+      'blackbox-testing/hands-on-1',
+      'blackbox-testing/hands-on-2',
 
       'blackbox-testing/analyse/title',
       'blackbox-testing/analyse/overview',
